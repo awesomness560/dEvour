@@ -1,0 +1,13 @@
+[gd_scene load_steps=3 format=3 uid="uid://d1ro16nubgpyb"]
+
+[ext_resource type="Texture2D" uid="uid://bpo4ifer83jti" path="res://circlebutwhite.png" id="1_0xm2m"]
+[ext_resource type="Script" uid="uid://dppwttdoguuy1" path="res://circlebutwhite.gd" id="2_h2yge"]
+
+[node name="Main" type="Node2D"]
+
+[node name="Circlebutwhite" type="Sprite2D" parent="."]
+position = Vector2(543.451, 348.214)
+scale = Vector2(0.0185842, 0.017856)
+texture = ExtResource("1_0xm2m")
+script = ExtResource("2_h2yge")
+speed = 12

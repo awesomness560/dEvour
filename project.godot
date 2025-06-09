@@ -11,8 +11,15 @@ config_version=5
 [application]
 
 config/name="dEvour"
+run/main_scene="uid://d1ro16nubgpyb"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
+
+[display]
+
+window/size/mode=2
+window/stretch/mode="canvas_items"
+window/stretch/aspect="expand"
 
 [rendering]
 
