@@ -1,0 +1,17 @@
+[gd_scene load_steps=3 format=3 uid="uid://ijenbfmxbvy6"]
+
+[ext_resource type="Texture2D" uid="uid://vy63x4st012l" path="res://images/trinaglebutwhite.png" id="1_1xqsx"]
+[ext_resource type="Script" uid="uid://dawyjjg2t1y5a" path="res://scenes/enemie.gd" id="1_vkxs4"]
+
+[node name="Enemy" type="Node2D"]
+script = ExtResource("1_vkxs4")
+
+[node name="triangle" type="Sprite2D" parent="."]
+modulate = Color(1, 0.292082, 0.769999, 1)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_1xqsx")
+
+[node name="Area2D" type="Area2D" parent="triangle"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="triangle/Area2D"]
+polygon = PackedVector2Array(-425, 375, 425, 375, 0, -375)

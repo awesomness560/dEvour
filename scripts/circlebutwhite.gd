@@ -32,6 +32,13 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 			zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
 			speed += 0.4
 			#zoom(parent)
+	if parent is enemy:
+		if parent.scale < circle.scale:
+			parent.queue_free() 
+			grow(parent)#( i fix) kys (change if pellet scene is cganged in structure)
+			zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
+			speed += 0.4
+		
 
 func handleCamera():
 	camera.zoom.x = lerp(camera.zoom.x, zoomTarget, 0.1)

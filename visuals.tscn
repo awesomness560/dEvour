@@ -2,8 +2,8 @@
 
 [ext_resource type="Shader" uid="uid://ddoignx7fcyso" path="res://Shaders/player.gdshader" id="1_jdj8a"]
 [ext_resource type="Shader" uid="uid://cldsfbdp2e5sn" path="res://Shaders/background.gdshader" id="3_frcuw"]
-[ext_resource type="Script" uid="uid://dppwttdoguuy1" path="res://circlebutwhite.gd" id="3_n2j4k"]
-[ext_resource type="Texture2D" uid="uid://b0poo0166m2qj" path="res://circle.png" id="3_w4dp7"]
+[ext_resource type="Script" uid="uid://dppwttdoguuy1" path="res://scripts/circlebutwhite.gd" id="3_n2j4k"]
+[ext_resource type="Texture2D" uid="uid://b0poo0166m2qj" path="res://images/circle.png" id="3_w4dp7"]
 [ext_resource type="Script" uid="uid://co1ym4im685v1" path="res://VisualScripts/background.gd" id="5_agjjk"]
 [ext_resource type="Script" uid="uid://bw27o2uq2qexr" path="res://VisualScripts/jelly_slime.gd" id="6_w4dp7"]
 [ext_resource type="PackedScene" uid="uid://cep6skkp8pcry" path="res://VisualScenes/hud.tscn" id="7_85umf"]
