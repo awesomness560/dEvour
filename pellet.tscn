@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://dknnie2rd755r"]
+
+[ext_resource type="Texture2D" uid="uid://bpo4ifer83jti" path="res://circlebutwhite.png" id="1_6rd4r"]
+[ext_resource type="Script" uid="uid://dea6fe521jomm" path="res://pelletbutwhite.gd" id="2_cesqr"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_cesqr"]
+radius = 389.474
+
+[node name="Pelletbutwhite" type="Sprite2D"]
+modulate = Color(1, 1, 0, 1)
+texture = ExtResource("1_6rd4r")
+script = ExtResource("2_cesqr")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_cesqr")

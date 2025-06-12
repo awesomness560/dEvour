@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://ijenbfmxbvy6"]
+
+[ext_resource type="Texture2D" uid="uid://bpo4ifer83jti" path="res://circlebutwhite.png" id="1_1xqsx"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_bs3ma"]
+radius = 394.005
+
+[node name="Enemy" type="Node2D"]
+
+[node name="Circlebutwhite" type="Sprite2D" parent="."]
+modulate = Color(1, 0.0509804, 1, 1)
+scale = Vector2(0.04, 0.04)
+texture = ExtResource("1_1xqsx")
+
+[node name="Area2D" type="Area2D" parent="Circlebutwhite"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circlebutwhite/Area2D"]
+shape = SubResource("CircleShape2D_bs3ma")
