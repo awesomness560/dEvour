@@ -1,10 +1,10 @@
 [gd_scene load_steps=4 format=3 uid="uid://b4ohgfqhj757o"]
 
-[ext_resource type="Script" uid="uid://dppwttdoguuy1" path="res://circlebutwhite.gd" id="1_onrkg"]
-[ext_resource type="Texture2D" uid="uid://bpo4ifer83jti" path="res://circlebutwhite.png" id="2_i3pqv"]
+[ext_resource type="Script" uid="uid://dppwttdoguuy1" path="res://scripts/circlebutwhite.gd" id="1_onrkg"]
+[ext_resource type="Texture2D" uid="uid://b0poo0166m2qj" path="res://images/circle.png" id="2_g2els"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
-radius = 394.958
+radius = 243.842
 
 [node name="Player" type="Node2D" node_paths=PackedStringArray("camera", "circle")]
 script = ExtResource("1_onrkg")
@@ -15,7 +15,7 @@ circle = NodePath("Circlebutwhite")
 
 [node name="Circlebutwhite" type="Sprite2D" parent="."]
 scale = Vector2(0.119, 0.119)
-texture = ExtResource("2_i3pqv")
+texture = ExtResource("2_g2els")
 
 [node name="Area2D" type="Area2D" parent="Circlebutwhite"]
 
