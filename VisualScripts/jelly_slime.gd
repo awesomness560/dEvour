@@ -6,16 +6,15 @@ class_name JellySlime
 @export var wobble_strength: float = 0.15  # How much wobble
 @export var other : RigidBody2D
 
-@onready var slime_mesh = $SlimeMesh
 var original_scale: Vector2
 var active_absorptions: Array[RigidBody2D] = []
 
 func _ready():
 	original_scale = scale
 
-func _unhandled_input(event: InputEvent) -> void:
-	if event.is_action_pressed("Debug"):
-		absorb_target(other)
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("Debug"):
+		#absorb_target(other)
 
 # MAIN FUNCTION - Call this to absorb any target
 func absorb_target(target: Node2D) -> void:

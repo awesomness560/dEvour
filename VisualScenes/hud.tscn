@@ -1,0 +1,66 @@
+[gd_scene load_steps=4 format=3 uid="uid://cep6skkp8pcry"]
+
+[ext_resource type="Script" uid="uid://cixslbqt03xhl" path="res://VisualScripts/combo.gd" id="1_cnoio"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85umf"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_2m464"]
+bg_color = Color(1, 0.878431, 0.494118, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
+[node name="HUD" type="CanvasLayer"]
+
+[node name="Combo" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 0
+offset_left = 997.0
+offset_top = 68.0
+offset_right = 1097.0
+offset_bottom = 149.0
+pivot_offset = Vector2(50.14, 40.695)
+
+[node name="ComboContainer" type="HBoxContainer" parent="Combo"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+pivot_offset = Vector2(43, 37.3)
+
+[node name="Combo" type="Label" parent="Combo/ComboContainer" node_paths=PackedStringArray("comboTimer", "comboBar")]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.878431, 0.494118, 1)
+theme_override_font_sizes/font_size = 51
+text = "1"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = ExtResource("1_cnoio")
+comboTimer = NodePath("../../ComboTimer")
+comboBar = NodePath("../../ComboBar")
+
+[node name="ComboText" type="Label" parent="Combo/ComboContainer"]
+layout_mode = 2
+theme_override_colors/font_color = Color(1, 0.878431, 0.494118, 1)
+text = "Combo"
+
+[node name="ComboBar" type="ProgressBar" parent="Combo"]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/background = SubResource("StyleBoxEmpty_85umf")
+theme_override_styles/fill = SubResource("StyleBoxFlat_2m464")
+show_percentage = false
+
+[node name="ComboTimer" type="Timer" parent="Combo"]
+one_shot = true
+
+[connection signal="timeout" from="Combo/ComboTimer" to="Combo/ComboContainer/Combo" method="_on_combo_timer_timeout"]
