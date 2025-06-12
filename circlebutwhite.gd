@@ -3,9 +3,14 @@ class_name Player
 @export var camera: Camera2D
 @export var circle: Sprite2D 
 @export var speed = 100
+
+var zoomTarget = 1.0
+
 func _ready() -> void:
 	Global.player = self
 func _process(delta: float) -> void:
+	handleCamera()
+	
 	if Input.is_key_pressed(KEY_D):
 		global_position.x += speed*delta
 	if Input.is_key_pressed(KEY_A):
@@ -24,11 +29,15 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 		if parent.scale < circle.scale:
 			parent.queue_free() 
 			grow(parent)#( i fix) kys (change if pellet scene is cganged in structure)
-			zoom(parent)
-func zoom(parent:Food):
-	#print (camera.zoom)
-	if camera.zoom <= Vector2(0,0):
-		pass
-	else:
-		camera.zoom -= Vector2(0.025,0.025)
-	#print (camera.zoom)
+			zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
+			speed += 0.4
+			#zoom(parent)
+
+func handleCamera():
+	camera.zoom.x = lerp(camera.zoom.x, zoomTarget, 0.1)
+	camera.zoom.y = lerp(camera.zoom.y, zoomTarget, 0.1)
+
+#func zoom(parent:Food):
+	#camera.zoom /= zoomFactor
+	#zoomFactor -= 0.05
+	#zoomFactor = floor(zoomFactor)

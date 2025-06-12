@@ -1,0 +1,138 @@
+[gd_scene load_steps=14 format=3 uid="uid://bmfu7f5wuqkps"]
+
+[ext_resource type="Shader" uid="uid://ddoignx7fcyso" path="res://Shaders/player.gdshader" id="1_jdj8a"]
+[ext_resource type="Shader" uid="uid://cldsfbdp2e5sn" path="res://Shaders/background.gdshader" id="3_frcuw"]
+[ext_resource type="Script" uid="uid://dppwttdoguuy1" path="res://circlebutwhite.gd" id="3_n2j4k"]
+[ext_resource type="Texture2D" uid="uid://b0poo0166m2qj" path="res://circle.png" id="3_w4dp7"]
+[ext_resource type="Script" uid="uid://co1ym4im685v1" path="res://VisualScripts/background.gd" id="5_agjjk"]
+[ext_resource type="Script" uid="uid://bw27o2uq2qexr" path="res://VisualScripts/jelly_slime.gd" id="6_w4dp7"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_n2j4k"]
+shader = ExtResource("1_jdj8a")
+shader_parameter/alpha_tresh = 0.8
+shader_parameter/shrink = 2.0
+shader_parameter/offset_mul = 2.0
+shader_parameter/coff_angle = 0.0
+shader_parameter/coff_mul = -0.055
+shader_parameter/coff_std = 0.2
+shader_parameter/amp1 = 0.125
+shader_parameter/freq1 = 4.0
+shader_parameter/speed1 = 5.0
+shader_parameter/amp2 = 0.125
+shader_parameter/freq2 = 9.0
+shader_parameter/speed2 = 1.46
+shader_parameter/tint_color = Color(0.447059, 0.862745, 0.733333, 1)
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_85umf"]
+radius = 511.764
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_w4dp7"]
+shader = ExtResource("3_frcuw")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.45098, 0.27451, 0.298039, 1)
+shader_parameter/dot_color = Color(0.670588, 0.337255, 0.458824, 1)
+shader_parameter/camera_offset = Vector2(0, 0)
+shader_parameter/camera_zoom = 1.0
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+shader_parameter/enable_fade = true
+shader_parameter/fade_start = 0.8
+shader_parameter/fade_end = 2.0
+shader_parameter/enable_density_fade = true
+shader_parameter/min_dot_size = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_w4dp7"]
+radius = 25.02
+
+[sub_resource type="SphereMesh" id="SphereMesh_85umf"]
+
+[sub_resource type="Environment" id="Environment_w4dp7"]
+background_mode = 3
+background_color = Color(0.45098, 0.27451, 0.298039, 1)
+glow_enabled = true
+glow_blend_mode = 0
+adjustment_brightness = 0.71
+
+[sub_resource type="PrismMesh" id="PrismMesh_w4dp7"]
+
+[node name="Visuals" type="Node2D"]
+
+[node name="TempPlayer" type="Node2D" parent="." node_paths=PackedStringArray("camera", "circle")]
+script = ExtResource("3_n2j4k")
+camera = NodePath("Circlebutwhite/Camera2D")
+circle = NodePath("Circlebutwhite")
+
+[node name="Circlebutwhite" type="Sprite2D" parent="TempPlayer" node_paths=PackedStringArray("other")]
+modulate = Color(0.447059, 0.862745, 0.733333, 1)
+material = SubResource("ShaderMaterial_n2j4k")
+scale = Vector2(0.28, 0.28)
+texture = ExtResource("3_w4dp7")
+script = ExtResource("6_w4dp7")
+other = NodePath("../../Circle")
+
+[node name="Camera2D" type="Camera2D" parent="TempPlayer/Circlebutwhite" groups=["camera"]]
+scale = Vector2(7.63487, 7.63487)
+
+[node name="Area2D" type="Area2D" parent="TempPlayer/Circlebutwhite"]
+scale = Vector2(0.467779, 0.467779)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="TempPlayer/Circlebutwhite/Area2D"]
+shape = SubResource("CircleShape2D_85umf")
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+z_index = -2
+material = SubResource("ShaderMaterial_w4dp7")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("5_agjjk")
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+visible = false
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(45.115, 45.115)
+color = Color(0.45098, 0.27451, 0.298039, 1)
+
+[node name="Circle" type="RigidBody2D" parent="."]
+position = Vector2(-168, 98)
+gravity_scale = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Circle"]
+shape = SubResource("CircleShape2D_w4dp7")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Circle"]
+position = Vector2(1.00001, -3.8147e-06)
+scale = Vector2(42.6202, 42.6202)
+mesh = SubResource("SphereMesh_85umf")
+
+[node name="Hud" type="CanvasLayer" parent="."]
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
+environment = SubResource("Environment_w4dp7")
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="."]
+modulate = Color(0.933333, 0.415686, 0.486275, 1)
+position = Vector2(-345, -121)
+scale = Vector2(87.98, 87.98)
+mesh = SubResource("PrismMesh_w4dp7")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Label" type="Label" parent="CanvasLayer"]
+offset_right = 40.0
+offset_bottom = 23.0
+text = "8"
+
+[connection signal="body_entered" from="TempPlayer/Circlebutwhite/Area2D" to="TempPlayer/Circlebutwhite" method="_on_area_2d_body_entered"]
