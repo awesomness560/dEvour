@@ -1,0 +1,80 @@
+[gd_scene load_steps=7 format=3 uid="uid://but5v1os34pg"]
+
+[ext_resource type="Shader" uid="uid://cldsfbdp2e5sn" path="res://Shaders/background.gdshader" id="1_bqqt6"]
+[ext_resource type="Shader" uid="uid://bna1dfvql7jdx" path="res://Shaders/ui.gdshader" id="1_wu84c"]
+[ext_resource type="Script" uid="uid://co1ym4im685v1" path="res://VisualScripts/background.gd" id="2_wu84c"]
+[ext_resource type="PackedScene" uid="uid://b4ohgfqhj757o" path="res://scenes/player.tscn" id="3_8ln24"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
+shader = ExtResource("1_wu84c")
+shader_parameter/interval = 0.5
+shader_parameter/timeDelay = 0.0
+shader_parameter/intensityX = 20.0
+shader_parameter/intensityY = 20.0
+shader_parameter/seed = 42.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rtw2f"]
+shader = ExtResource("1_bqqt6")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.45098, 0.27451, 0.298039, 1)
+shader_parameter/dot_color = Color(0.670588, 0.337255, 0.458824, 1)
+shader_parameter/camera_offset = Vector2(0, 0)
+shader_parameter/camera_zoom = 1.0
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+shader_parameter/enable_fade = true
+shader_parameter/fade_start = 0.8
+shader_parameter/fade_end = 2.0
+shader_parameter/enable_density_fade = true
+shader_parameter/min_dot_size = 0.5
+
+[node name="MainMenu" type="Node2D"]
+
+[node name="MainMenu" type="CanvasLayer" parent="."]
+
+[node name="DevourText" type="Label" parent="MainMenu"]
+material = SubResource("ShaderMaterial_8ln24")
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -105.5
+offset_top = -207.0
+offset_right = 105.5
+offset_bottom = -124.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_colors/font_color = Color(1, 0.878431, 0.494118, 1)
+theme_override_font_sizes/font_size = 100
+text = "Devour"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+z_index = -2
+material = SubResource("ShaderMaterial_rtw2f")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_wu84c")
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+visible = false
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(45.115, 45.115)
+color = Color(0.45098, 0.27451, 0.298039, 1)
+
+[node name="Player" parent="." instance=ExtResource("3_8ln24")]

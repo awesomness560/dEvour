@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://bmfu7f5wuqkps"]
+[gd_scene load_steps=17 format=3 uid="uid://bmfu7f5wuqkps"]
 
 [ext_resource type="Shader" uid="uid://ddoignx7fcyso" path="res://Shaders/player.gdshader" id="1_jdj8a"]
 [ext_resource type="Shader" uid="uid://cldsfbdp2e5sn" path="res://Shaders/background.gdshader" id="3_frcuw"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" uid="uid://co1ym4im685v1" path="res://VisualScripts/background.gd" id="5_agjjk"]
 [ext_resource type="Script" uid="uid://bw27o2uq2qexr" path="res://VisualScripts/jelly_slime.gd" id="6_w4dp7"]
 [ext_resource type="PackedScene" uid="uid://cep6skkp8pcry" path="res://VisualScenes/hud.tscn" id="7_85umf"]
+[ext_resource type="Texture2D" uid="uid://c032uojk7mniu" path="res://images/squ.png" id="8_2m464"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2j4k"]
 shader = ExtResource("1_jdj8a")
@@ -26,6 +27,9 @@ shader_parameter/tint_color = Color(0.447059, 0.862745, 0.733333, 1)
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_85umf"]
 radius = 511.764
+
+[sub_resource type="Gradient" id="Gradient_moegl"]
+colors = PackedColorArray(0.447059, 0.862745, 0.733333, 1, 1, 1, 1, 1)
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_w4dp7"]
 shader = ExtResource("3_frcuw")
@@ -80,6 +84,17 @@ scale = Vector2(0.467779, 0.467779)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="TempPlayer/Circlebutwhite/Area2D"]
 shape = SubResource("CircleShape2D_85umf")
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="TempPlayer"]
+z_index = -1
+texture = ExtResource("8_2m464")
+emission_shape = 3
+emission_rect_extents = Vector2(30, 30)
+gravity = Vector2(0, 0)
+scale_amount_min = 10.0
+scale_amount_max = 20.0
+color = Color(0.447059, 0.862745, 0.733333, 1)
+color_ramp = SubResource("Gradient_moegl")
 
 [node name="BackgroundLayer" type="CanvasLayer" parent="."]
 layer = -1

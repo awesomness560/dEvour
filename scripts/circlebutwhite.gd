@@ -20,7 +20,7 @@ func _process(delta: float) -> void:
 		global_position.y -= speed*delta
 	if Input.is_key_pressed(KEY_S):
 		global_position.y += speed*delta
-		
+	
 func grow(parent:Food): 
 	circle.scale += Vector2(0.05,0.05)
 	Global.globalSize = circle.scale.x
