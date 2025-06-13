@@ -11,10 +11,6 @@
 position = Vector2(232, -5)
 scale = Vector2(0.065, 0.065)
 
-[node name="Enemy" parent="." instance=ExtResource("4_o6xl0")]
-z_index = 2
-position = Vector2(-501, -258)
-
 [node name="Node2D" type="Node2D" parent="."]
 script = ExtResource("2_tbgi4")
 pellet = ExtResource("3_tefeu")
@@ -25,3 +21,6 @@ z_index = 1
 [node name="Pellet2" parent="." instance=ExtResource("3_tefeu")]
 position = Vector2(-240, -51)
 scale = Vector2(0.065, 0.065)
+
+[node name="Enemy" parent="." instance=ExtResource("4_o6xl0")]
+position = Vector2(-85, 28)
