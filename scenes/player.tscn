@@ -24,24 +24,25 @@ shader_parameter/tint_color = Color(0.447059, 0.862745, 0.733333, 1)
 [sub_resource type="CircleShape2D" id="CircleShape2D_onrkg"]
 radius = 243.842
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("camera", "circle")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("camera", "circle", "area2d")]
 script = ExtResource("1_onrkg")
 camera = NodePath("Camera2D")
 circle = NodePath("Circlebutwhite")
+area2d = NodePath("Circlebutwhite/Area2D")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 
 [node name="Circlebutwhite" type="Sprite2D" parent="."]
 modulate = Color(0.447059, 0.862745, 0.733333, 1)
 material = SubResource("ShaderMaterial_tuyoq")
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.25, 0.25)
 texture = ExtResource("2_g2els")
 script = ExtResource("4_qlg0r")
 
 [node name="Area2D" type="Area2D" parent="Circlebutwhite"]
-scale = Vector2(0.85, 0.85)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Circlebutwhite/Area2D"]
+visible = false
 shape = SubResource("CircleShape2D_onrkg")
 
 [connection signal="area_entered" from="Circlebutwhite/Area2D" to="." method="_on_area_2d_area_entered"]

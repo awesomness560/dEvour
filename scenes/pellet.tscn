@@ -7,7 +7,7 @@
 radius = 389.474
 
 [node name="Pelletbutwhite" type="Sprite2D"]
-modulate = Color(1, 1, 0, 1)
+modulate = Color(1, 0.878431, 0.494118, 1)
 texture = ExtResource("1_6rd4r")
 script = ExtResource("2_cesqr")
 
