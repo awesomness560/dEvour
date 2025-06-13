@@ -2,7 +2,8 @@ extends Node2D
 class_name Player
 @export var camera: Camera2D
 @export var circle: Sprite2D 
-@export var speed = 100
+@export var intialSpeed = 100
+var speed = 100
 #higher lower limit means circle must be larget to consume
 @export var consumptionLowerLimit:float = .10
 @export var area2d : Area2D
@@ -22,6 +23,10 @@ func _process(delta: float) -> void:
 		global_position.y -= speed*delta
 	if Input.is_key_pressed(KEY_S):
 		global_position.y += speed*delta
+	if Input.is_key_pressed(KEY_SPACE):
+		speed_up(delta)
+	else:
+		speed = intialSpeed
 	
 func grow(parent:Food): 
 	circle.scale += Vector2(0.05,0.05)
@@ -64,7 +69,14 @@ func _on_area_2d_area_entered(area: Area2D) -> void:
 func handleCamera():
 	camera.zoom.x = lerp(camera.zoom.x, zoomTarget, 0.1)
 	camera.zoom.y = lerp(camera.zoom.y, zoomTarget, 0.1)
-
+	
+func speed_up(delta): 
+	if(circle.scale.x < 0.05):
+		return
+	else:
+		speed = 200
+		circle.scale -= Vector2(0.05,0.05) * delta
+		Global.globalSize = circle.scale.x 
 #func zoom(parent:Food):
 	#camera.zoom /= zoomFactor
 	#zoomFactor -= 0.05
