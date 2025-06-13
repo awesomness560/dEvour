@@ -7,15 +7,21 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Player" parent="." instance=ExtResource("1_jyhfs")]
-
-[node name="PelletSpawner" type="Node2D" parent="."]
-script = ExtResource("2_tbgi4")
-pellet = ExtResource("3_tefeu")
-
 [node name="Pellet" parent="." instance=ExtResource("3_tefeu")]
-position = Vector2(328, 8)
+position = Vector2(232, -5)
 scale = Vector2(0.065, 0.065)
 
 [node name="Enemy" parent="." instance=ExtResource("4_o6xl0")]
+z_index = 2
 position = Vector2(-501, -258)
+
+[node name="Node2D" type="Node2D" parent="."]
+script = ExtResource("2_tbgi4")
+pellet = ExtResource("3_tefeu")
+
+[node name="Player" parent="." instance=ExtResource("1_jyhfs")]
+z_index = 1
+
+[node name="Pellet2" parent="." instance=ExtResource("3_tefeu")]
+position = Vector2(-240, -51)
+scale = Vector2(0.065, 0.065)
