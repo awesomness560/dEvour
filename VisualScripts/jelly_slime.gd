@@ -7,7 +7,7 @@ class_name JellySlime
 @export var other : RigidBody2D
 
 var original_scale: Vector2
-var active_absorptions: Array[RigidBody2D] = []
+var active_absorptions: Array[Node2D] = []
 
 func _ready():
 	original_scale = scale
@@ -24,8 +24,10 @@ func absorb_target(target: Node2D) -> void:
 	active_absorptions.append(target)
 	
 	# Disable target physics immediately
-	target.freeze = true
+	#target.freeze = true
 	
+	var child = target.get_node("Area2D") as Area2D
+	child.monitorable = false
 	# Quick grab animation
 	var tween = create_tween()
 	tween.set_parallel(true)
@@ -36,35 +38,12 @@ func absorb_target(target: Node2D) -> void:
 	# Shrink target as it gets pulled in
 	tween.tween_property(target, "scale", Vector2.ZERO, grab_speed).set_trans(Tween.TRANS_CUBIC).set_ease(Tween.EASE_IN)
 	
-	# Start wobble slightly before grab completes
-	tween.tween_callback(func(): start_wobble()).set_delay(grab_speed * 0.7)
-	
 	# Clean up target
 	tween.tween_callback(func(): cleanup_target(target)).set_delay(grab_speed)
 
-func start_wobble():
-	var tween = create_tween()
-	tween.set_parallel(true)
-	
-	# Quick scale wobble
-	tween.tween_property(self, "scale", 
-		original_scale * (1.0 + wobble_strength), wobble_duration * 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	
-	tween.tween_property(self, "scale", original_scale, wobble_duration * 0.7).set_delay(wobble_duration * 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	
-	# Slight rotation wobble
-	var original_rotation = rotation
-	tween.tween_property(self, "rotation", 
-		original_rotation + wobble_strength * 0.2, wobble_duration * 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
-	
-	tween.tween_property(self, "rotation", original_rotation, wobble_duration * 0.7).set_delay(wobble_duration * 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
 func cleanup_target(target: Node2D):
 	if is_instance_valid(target):
 		target.queue_free()
 	
 	active_absorptions.erase(target)
-
-
-func _on_area_2d_body_entered(body: Node2D) -> void:
-	absorb_target(body)

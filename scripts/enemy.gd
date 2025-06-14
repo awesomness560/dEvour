@@ -11,6 +11,6 @@ func _process(delta: float) -> void:
 		global_position += movement * delta * speed
 		look_at(Global.player.global_position)	
 func die() -> void:
-	emit_signal("died")
+	died.emit()
 	queue_free()
 	

@@ -1,8 +1,10 @@
-[gd_scene load_steps=2 format=3 uid="uid://b3hlhufm5k7wc"]
+[gd_scene load_steps=3 format=3 uid="uid://b3hlhufm5k7wc"]
 
 [ext_resource type="Texture2D" uid="uid://vy63x4st012l" path="res://images/trinaglebutwhite.png" id="1_1xqsx"]
+[ext_resource type="Script" uid="uid://frkhhdt5imft" path="res://scripts/enemy.gd" id="1_md0e3"]
 
 [node name="Enemy" type="Node2D"]
+script = ExtResource("1_md0e3")
 
 [node name="triangle" type="Sprite2D" parent="."]
 modulate = Color(1, 0.292082, 0.769999, 1)

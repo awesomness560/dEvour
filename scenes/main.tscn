@@ -12,7 +12,7 @@
 [node name="Enemy_Spawner" type="Node2D" parent="."]
 position = Vector2(-501, -258)
 script = ExtResource("1_tefeu")
-enemy = ExtResource("4_o6xl0")
+nemy = ExtResource("4_o6xl0")
 pellet_spawner = NodePath("../Pellet_Spawner")
 
 [node name="Pellet" parent="." instance=ExtResource("3_tefeu")]
@@ -25,9 +25,6 @@ position = Vector2(-501, -258)
 script = ExtResource("3_tbgi4")
 
 [node name="Pellet_Spawner" parent="." instance=ExtResource("5_tefeu")]
-time_between_waves = null
-pellets_per_wave = null
-pellets_increment = null
 
 [node name="Player" parent="." instance=ExtResource("1_jyhfs")]
 z_index = 1

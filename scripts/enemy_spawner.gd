@@ -1,6 +1,6 @@
 extends Node2D
 class_name enemy_spawner
-@export var enemy : PackedScene
+@export var nemy : PackedScene
 @export var enemies_per_wave : int = 1
 @export var enemies_increment : int = 2
 
@@ -19,7 +19,7 @@ func spawn_wave() -> void:
 	enemies_per_wave += enemies_increment
 	alive_enemies = enemies_per_wave
 	for i in range(enemies_per_wave):
-		var p = enemy.instantiate()
+		var p = nemy.instantiate()
 		add_child(p)
 		p.add_to_group("enemies")
 		var side = randi() % 4
@@ -39,7 +39,7 @@ func spawn_wave() -> void:
 				spawn.x = Global.player.global_position.x + randi_range(-3000,3000)
 				spawn.y = Global.player.global_position.y - distance
 		p.global_position = spawn
-		p.connect("died", Callable(self, "on_death"))
+		p.died.connect(on_death)
 	pelletspawner.spawn()
 func on_death() -> void:
 	alive_enemies -= 1

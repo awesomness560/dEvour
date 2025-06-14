@@ -2,7 +2,7 @@ extends Node2D
 class_name Pellet_Spawner
 @export var pellet:PackedScene
 @export var time_between_waves: float = 5.0
-@export var pellets_per_wave: int = 50
+@export var pellets_per_wave: int = 20
 @export var pellets_increment: int = 0  # increase pellets each wave if desired
 
 var waves : int = 0
