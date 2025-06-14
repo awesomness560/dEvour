@@ -1,4 +1,4 @@
-[gd_scene load_steps=7 format=3 uid="uid://d1ro16nubgpyb"]
+[gd_scene load_steps=10 format=3 uid="uid://d1ro16nubgpyb"]
 
 [ext_resource type="PackedScene" uid="uid://b4ohgfqhj757o" path="res://scenes/player.tscn" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://bretn7hlxh3x6" path="res://scripts/enemy_spawner.gd" id="1_tefeu"]
@@ -6,6 +6,24 @@
 [ext_resource type="PackedScene" uid="uid://dknnie2rd755r" path="res://scenes/pellet.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b3hlhufm5k7wc" path="res://scenes/enemy.tscn" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dwvfpesetno6e" path="res://scenes/pellet_spawner.tscn" id="5_tefeu"]
+[ext_resource type="Shader" uid="uid://cldsfbdp2e5sn" path="res://Shaders/background.gdshader" id="7_tipki"]
+[ext_resource type="Script" uid="uid://co1ym4im685v1" path="res://VisualScripts/background.gd" id="8_85g3d"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_choun"]
+shader = ExtResource("7_tipki")
+shader_parameter/cell_size = 16.0
+shader_parameter/dot_size = 0.25
+shader_parameter/background_color = Color(0.45098, 0.27451, 0.298039, 1)
+shader_parameter/dot_color = Color(0.670588, 0.337255, 0.458824, 1)
+shader_parameter/camera_offset = Vector2(0, 0)
+shader_parameter/camera_zoom = 1.0
+shader_parameter/anti_aliasing_factor = 0.01
+shader_parameter/stochastic_samples = 16
+shader_parameter/enable_fade = true
+shader_parameter/fade_start = 0.8
+shader_parameter/fade_end = 2.0
+shader_parameter/enable_density_fade = true
+shader_parameter/min_dot_size = 0.5
 
 [node name="Main" type="Node2D"]
 
@@ -25,9 +43,31 @@ position = Vector2(-501, -258)
 script = ExtResource("3_tbgi4")
 
 [node name="Pellet_Spawner" parent="." instance=ExtResource("5_tefeu")]
-time_between_waves = null
-pellets_per_wave = null
-pellets_increment = null
 
 [node name="Player" parent="." instance=ExtResource("1_jyhfs")]
 z_index = 1
+
+[node name="BackgroundLayer" type="CanvasLayer" parent="."]
+layer = -1
+
+[node name="Background" type="ColorRect" parent="BackgroundLayer"]
+z_index = -2
+material = SubResource("ShaderMaterial_choun")
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("8_85g3d")
+
+[node name="ColorRect" type="ColorRect" parent="BackgroundLayer"]
+visible = false
+z_index = -2
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(45.115, 45.115)
+color = Color(0.45098, 0.27451, 0.298039, 1)
