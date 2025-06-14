@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://but5v1os34pg"]
 
 [ext_resource type="Shader" uid="uid://cldsfbdp2e5sn" path="res://Shaders/background.gdshader" id="1_bqqt6"]
-[ext_resource type="Shader" uid="uid://bna1dfvql7jdx" path="res://Shaders/ui.gdshader" id="1_wu84c"]
+[ext_resource type="Shader" path="res://Shaders/ui.gdshader" id="1_wu84c"]
 [ext_resource type="Script" uid="uid://co1ym4im685v1" path="res://VisualScripts/background.gd" id="2_wu84c"]
 [ext_resource type="PackedScene" uid="uid://b4ohgfqhj757o" path="res://scenes/player.tscn" id="3_8ln24"]
 

@@ -10,7 +10,7 @@ var speed = 100
 var zoomTarget = 1.0
 
 func _ready() -> void:
-	Global.player = self #
+	Global.player = self 
 	checkForAreas()
 func _process(delta: float) -> void:
 	handleCamera()
@@ -28,26 +28,29 @@ func _process(delta: float) -> void:
 	else:
 		speed = intialSpeed
 	
-func grow(parent:Food): 
+func grow(): 
 	circle.scale += Vector2(0.05,0.05)
 	Global.globalSize = circle.scale.x
 
 func checkForAreas():
 	for i in area2d.get_overlapping_areas():
-		var parent = i.get_parent()
+		var parent = i.owner
 		if parent is Food:
 			if parent.scale.x < (Global.globalSize-consumptionLowerLimit):
 				parent.queue_free() 
-				grow(parent)#( i fix) kys (change if pellet scene is cganged in structure)
+				grow()#( i fix) kys (change if pellet scene is cganged in structure)
 				zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
 				speed += 0.4
 				#zoom(parent)
-		if parent is enemy:
-			if parent.scale.x < (Global.globalSize-consumptionLowerLimit):
-				parent.die()
-				grow(parent)#( i fix) kys (change if pellet scene is cganged in structure)
-				zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
-				speed += 0.4
+		elif parent is enemy:
+			#if parent.size.x < (Global.globalSize-consumptionLowerLimit):
+			print("Enemy dying:", parent)
+			parent.die()
+			grow()#( i fix) kys (change if pellet scene is cganged in structure)
+			zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
+			speed += 0.4
+			#else:
+				#circle.hide()
 				
 '''
 func _on_area_2d_area_entered(area: Area2D) -> void:

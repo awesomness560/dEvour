@@ -59,7 +59,7 @@ func start_wobble():
 	
 	tween.tween_property(self, "rotation", original_rotation, wobble_duration * 0.7).set_delay(wobble_duration * 0.3).set_trans(Tween.TRANS_ELASTIC).set_ease(Tween.EASE_OUT)
 
-func cleanup_target(target: RigidBody2D):
+func cleanup_target(target: Node2D):
 	if is_instance_valid(target):
 		target.queue_free()
 	
