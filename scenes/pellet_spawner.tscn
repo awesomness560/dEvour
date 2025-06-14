@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dwvfpesetno6e"]
+
+[ext_resource type="Script" uid="uid://bbyq183oix3fr" path="res://scripts/pellet_spawner.gd" id="1_phfps"]
+[ext_resource type="PackedScene" uid="uid://dknnie2rd755r" path="res://scenes/pellet.tscn" id="2_hj1yh"]
+
+[node name="Pellet_Spawner" type="Node2D"]
+script = ExtResource("1_phfps")
+pellet = ExtResource("2_hj1yh")

@@ -10,7 +10,7 @@ var speed = 100
 var zoomTarget = 1.0
 
 func _ready() -> void:
-	Global.player = self
+	Global.player = self #
 	checkForAreas()
 func _process(delta: float) -> void:
 	handleCamera()
@@ -43,8 +43,8 @@ func checkForAreas():
 				speed += 0.4
 				#zoom(parent)
 		if parent is enemy:
-			if parent.scale < (Global.globalSize-consumptionLowerLimit):
-				parent.queue_free() 
+			if parent.scale.x < (Global.globalSize-consumptionLowerLimit):
+				parent.die()
 				grow(parent)#( i fix) kys (change if pellet scene is cganged in structure)
 				zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
 				speed += 0.4
@@ -71,7 +71,7 @@ func handleCamera():
 	camera.zoom.y = lerp(camera.zoom.y, zoomTarget, 0.1)
 	
 func speed_up(delta): 
-	if(circle.scale.x < 0.05):
+	if(circle.scale.x < 0.25):
 		return
 	else:
 		speed = 200

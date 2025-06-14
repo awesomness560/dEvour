@@ -9,10 +9,9 @@
 
 [node name="Main" type="Node2D"]
 
-[node name="Enemy_Spawner" type="Node2D" parent="."]
+[node name="Enemy_Spawner" type="Node2D" parent="." node_paths=PackedStringArray("pellet_spawner")]
 position = Vector2(-501, -258)
 script = ExtResource("1_tefeu")
-enemy = ExtResource("4_o6xl0")
 pellet_spawner = NodePath("../Pellet_Spawner")
 
 [node name="Pellet" parent="." instance=ExtResource("3_tefeu")]
