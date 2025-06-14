@@ -38,12 +38,6 @@ func spawn_wave() -> void:
 			3:
 				spawn.x = Global.player.global_position.x + randi_range(-3000,3000)
 				spawn.y = Global.player.global_position.y - distance
-		'var x1 = randi_range(Global.player.global_position.x - 3000,Global.player.global_position.x - 500 )
-		var x2 = randi_range(Global.player.global_position.x + 500,Global.player.global_position.x + 3000 )
-		var y1 = randi_range(Global.player.global_position.y - 3000,Global.player.global_position.y - 500 )
-		var y2 = randi_range(Global.player.global_position.y + 500,Global.player.global_position.y + 3000 )
-		p.global_position.x = randi_range(x1, x2)
-		p.global_position.y = randi_range(y1, y2)'
 		p.global_position = spawn
 		p.connect("died", Callable(self, "on_death"))
 	pelletspawner.spawn()

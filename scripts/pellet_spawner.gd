@@ -6,16 +6,6 @@ class_name Pellet_Spawner
 @export var pellets_increment: int = 0  # increase pellets each wave if desired
 
 var waves : int = 0
-#var wave_timer : Timer = Timer.new()
-'func _ready() -> void:
-   wave_timer.wait_time = time_between_waves
-	wave_timer.autostart = true
-	wave_timer.one_shot = false
-	add_child(wave_timer)
-	wave_timer.timeout.connect(on_wave_timer_timeout)
-	spawn(false) 
-func on_wave_timer_timeout() -> void:
-	spawn(false)'
 func spawn() -> void:
 	waves+=1
 	pellets_per_wave += pellets_increment

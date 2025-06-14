@@ -1,15 +1,10 @@
 extends Node2D
 class_name enemy
 signal died
-@export var triangle : Sprite2D
-var size 
-@export var speed = 1000
+@export var speed = 100
 func _ready() -> void:
+	await get_tree().process_frame
 	add_to_group("enemies")
-	var playerSize = (Global.globalSize)
-	size = randf_range((playerSize*0.5),(playerSize*1.5))
-	scale = Vector2(size,size)
-	print(scale)
 func _process(delta: float) -> void:
 	if Global.player:
 		var movement : Vector2 = (Global.player.global_position - global_position).normalized()

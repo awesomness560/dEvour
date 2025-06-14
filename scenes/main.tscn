@@ -25,6 +25,9 @@ position = Vector2(-501, -258)
 script = ExtResource("3_tbgi4")
 
 [node name="Pellet_Spawner" parent="." instance=ExtResource("5_tefeu")]
+time_between_waves = null
+pellets_per_wave = null
+pellets_increment = null
 
 [node name="Player" parent="." instance=ExtResource("1_jyhfs")]
 z_index = 1
