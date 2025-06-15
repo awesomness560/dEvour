@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://b4ohgfqhj757o"]
+[gd_scene load_steps=11 format=3 uid="uid://b4ohgfqhj757o"]
 
 [ext_resource type="Script" uid="uid://dppwttdoguuy1" path="res://scripts/circlebutwhite.gd" id="1_onrkg"]
 [ext_resource type="Shader" uid="uid://ddoignx7fcyso" path="res://Shaders/player.gdshader" id="2_dqkch"]
@@ -6,6 +6,7 @@
 [ext_resource type="Script" uid="uid://bw27o2uq2qexr" path="res://VisualScripts/jelly_slime.gd" id="4_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://btawjqtopba6n" path="res://Audio/Pop/pop-cartoon-328167.mp3" id="5_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://dxk0j17sqy7du" path="res://Audio/Pop/sharp-pop-328170.mp3" id="6_fjrip"]
+[ext_resource type="Texture2D" uid="uid://c032uojk7mniu" path="res://images/squ.png" id="7_fjrip"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_tuyoq"]
 shader = ExtResource("2_dqkch")
@@ -31,10 +32,11 @@ streams_count = 2
 stream_0/stream = ExtResource("5_tuyoq")
 stream_1/stream = ExtResource("6_fjrip")
 
-[node name="Player" type="Node2D" node_paths=PackedStringArray("camera", "circle", "eatSoundEffect", "area2d")]
+[node name="Player" type="Node2D" node_paths=PackedStringArray("camera", "circle", "speedingParticles", "eatSoundEffect", "area2d")]
 script = ExtResource("1_onrkg")
 camera = NodePath("Camera2D")
 circle = NodePath("Circlebutwhite")
+speedingParticles = NodePath("Speeding")
 eatSoundEffect = NodePath("Eat")
 area2d = NodePath("Circlebutwhite/Area2D")
 
@@ -55,5 +57,18 @@ shape = SubResource("CircleShape2D_onrkg")
 
 [node name="Eat" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_smehm")
+
+[node name="Speeding" type="CPUParticles2D" parent="."]
+emitting = false
+amount = 20
+texture = ExtResource("7_fjrip")
+spread = 180.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 45.45
+initial_velocity_max = 80.8
+angle_max = 720.0
+scale_amount_min = 20.0
+scale_amount_max = 20.0
+color = Color(0.933333, 0.415686, 0.486275, 1)
 
 [connection signal="area_entered" from="Circlebutwhite/Area2D" to="." method="_on_area_2d_area_entered"]
