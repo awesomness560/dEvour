@@ -1,8 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://d1ro16nubgpyb"]
+[gd_scene load_steps=9 format=3 uid="uid://d1ro16nubgpyb"]
 
 [ext_resource type="PackedScene" uid="uid://b4ohgfqhj757o" path="res://scenes/player.tscn" id="1_jyhfs"]
 [ext_resource type="Script" uid="uid://bretn7hlxh3x6" path="res://scripts/enemy_spawner.gd" id="1_tefeu"]
-[ext_resource type="Script" uid="uid://frkhhdt5imft" path="res://scripts/enemy.gd" id="3_tbgi4"]
 [ext_resource type="PackedScene" uid="uid://dknnie2rd755r" path="res://scenes/pellet.tscn" id="3_tefeu"]
 [ext_resource type="PackedScene" uid="uid://b3hlhufm5k7wc" path="res://scenes/enemy.tscn" id="4_o6xl0"]
 [ext_resource type="PackedScene" uid="uid://dwvfpesetno6e" path="res://scenes/pellet_spawner.tscn" id="5_tefeu"]
@@ -40,7 +39,6 @@ scale = Vector2(0.065, 0.065)
 [node name="Enemy1" parent="." instance=ExtResource("4_o6xl0")]
 z_index = 2
 position = Vector2(-501, -258)
-script = ExtResource("3_tbgi4")
 
 [node name="Pellet_Spawner" parent="." instance=ExtResource("5_tefeu")]
 

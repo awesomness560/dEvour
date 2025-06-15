@@ -13,9 +13,13 @@ func _ready() -> void:
 	await get_tree().process_frame
 	randomize()
 	pelletspawner = get_node(pellet_spawner) as Pellet_Spawner
+	
+	await SignalBus.gameStart
+	
 	spawn_wave()
 func spawn_wave() -> void:
 	waves+=1
+	SignalBus.newWave.emit()
 	enemies_per_wave += enemies_increment
 	alive_enemies = enemies_per_wave
 	for i in range(enemies_per_wave):

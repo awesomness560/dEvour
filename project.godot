@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="dEvour"
-run/main_scene="uid://d1ro16nubgpyb"
+run/main_scene="uid://but5v1os34pg"
 config/features=PackedStringArray("4.4", "GL Compatibility")
 config/icon="res://icon.svg"
 
@@ -33,6 +33,7 @@ project/assembly_name="dEvour"
 [file_customization]
 
 folder_colors={
+"res://Audio/": "green",
 "res://Shaders/": "blue"
 }
 

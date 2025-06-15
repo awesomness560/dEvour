@@ -28,8 +28,16 @@ func _ready() -> void:
 	
 	SignalBus.combo.connect(combo)
 
+#func _unhandled_input(event: InputEvent) -> void:
+	#if event.is_action_pressed("Debug"):
+		#combo()
+
 func _process(delta: float) -> void:
 	comboBar.value = comboTimer.time_left
+	if Global.combo == 1:
+		container.hide()
+	else:
+		container.show()
 
 func startPulse():
 	pulsingTween = create_tween()
@@ -73,5 +81,7 @@ func combo():
 
 
 func _on_combo_timer_timeout() -> void:
+	if Global.combo > Global.highestCombo:
+		Global.highestCombo = Global.combo
 	Global.combo = 1
 	self.text = str(Global.combo)

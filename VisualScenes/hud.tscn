@@ -1,6 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cep6skkp8pcry"]
+[gd_scene load_steps=9 format=3 uid="uid://cep6skkp8pcry"]
 
 [ext_resource type="Script" uid="uid://cixslbqt03xhl" path="res://VisualScripts/combo.gd" id="1_cnoio"]
+[ext_resource type="Script" uid="uid://gaeer1fkfi5t" path="res://VisualScripts/wave.gd" id="2_5eij5"]
+[ext_resource type="FontFile" uid="uid://7o3clv8vwecg" path="res://Fonts/BalloonDreams-BW1Kw.ttf" id="3_4nydl"]
+[ext_resource type="AudioStream" uid="uid://dlo5frtbjae7r" path="res://Audio/NewWave/level-up-47165.mp3" id="4_4nydl"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_85umf"]
 
@@ -10,6 +13,16 @@ corner_radius_top_left = 5
 corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
+
+[sub_resource type="LabelSettings" id="LabelSettings_5eij5"]
+font = ExtResource("3_4nydl")
+font_size = 50
+font_color = Color(1, 0.878431, 0.494118, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_o1mwl"]
+font = ExtResource("3_4nydl")
+font_size = 50
+font_color = Color(1, 0.878431, 0.494118, 1)
 
 [node name="HUD" type="CanvasLayer"]
 
@@ -61,6 +74,66 @@ theme_override_styles/fill = SubResource("StyleBoxFlat_2m464")
 show_percentage = false
 
 [node name="ComboTimer" type="Timer" parent="Combo"]
+wait_time = 2.2
+one_shot = true
+
+[node name="Wave" type="Control" parent="." node_paths=PackedStringArray("numbersControl", "newWaveSound", "bufferTime")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -655.0
+offset_bottom = -655.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+script = ExtResource("2_5eij5")
+numberSettings = SubResource("LabelSettings_5eij5")
+numbersControl = NodePath("Numbers")
+newWaveSound = NodePath("NewWaveSound")
+bufferTime = NodePath("BufferTime")
+
+[node name="Background" type="ColorRect" parent="Wave"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -132.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.268, 0.268, 0.268, 0.486)
+
+[node name="Wave" type="Label" parent="Wave"]
+layout_mode = 2
+offset_left = 480.0
+offset_top = 276.0
+offset_right = 612.0
+offset_bottom = 345.0
+text = "Wave"
+label_settings = SubResource("LabelSettings_o1mwl")
+
+[node name="Numbers" type="Control" parent="Wave"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = 45.0
+offset_top = -55.0
+offset_right = 163.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+
+[node name="NewWaveSound" type="AudioStreamPlayer" parent="Wave"]
+stream = ExtResource("4_4nydl")
+
+[node name="BufferTime" type="Timer" parent="Wave"]
+wait_time = 0.1
 one_shot = true
 
 [connection signal="timeout" from="Combo/ComboTimer" to="Combo/ComboContainer/Combo" method="_on_combo_timer_timeout"]

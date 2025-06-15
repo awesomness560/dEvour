@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://bmfu7f5wuqkps"]
+[gd_scene load_steps=21 format=3 uid="uid://bmfu7f5wuqkps"]
 
 [ext_resource type="Shader" uid="uid://ddoignx7fcyso" path="res://Shaders/player.gdshader" id="1_jdj8a"]
 [ext_resource type="Shader" uid="uid://cldsfbdp2e5sn" path="res://Shaders/background.gdshader" id="3_frcuw"]
@@ -8,6 +8,9 @@
 [ext_resource type="Script" uid="uid://bw27o2uq2qexr" path="res://VisualScripts/jelly_slime.gd" id="6_w4dp7"]
 [ext_resource type="PackedScene" uid="uid://cep6skkp8pcry" path="res://VisualScenes/hud.tscn" id="7_85umf"]
 [ext_resource type="Texture2D" uid="uid://c032uojk7mniu" path="res://images/squ.png" id="8_2m464"]
+[ext_resource type="AudioStream" uid="uid://dahmdic8efk05" path="res://Audio/Music/good-night-lofi-cozy-chill-music-160166.mp3" id="9_63ial"]
+[ext_resource type="AudioStream" uid="uid://d064gx0qmkack" path="res://Audio/Music/spring-lofi-vibes-lofi-music-340019.mp3" id="10_2cpmu"]
+[ext_resource type="AudioStream" uid="uid://e1qtmq8kkadj" path="res://Audio/Music/Metal Gear Rising_ Revengeance OST It Has To Be This Way Extended.mp3" id="11_2cpmu"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_n2j4k"]
 shader = ExtResource("1_jdj8a")
@@ -61,12 +64,22 @@ adjustment_brightness = 0.71
 
 [sub_resource type="PrismMesh" id="PrismMesh_w4dp7"]
 
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_x27xh"]
+random_pitch = 16.0
+random_volume_offset_db = 40.0
+streams_count = 3
+stream_0/stream = ExtResource("9_63ial")
+stream_1/stream = ExtResource("10_2cpmu")
+stream_2/stream = ExtResource("11_2cpmu")
+stream_2/weight = 60.0
+
 [node name="Visuals" type="Node2D"]
 
-[node name="TempPlayer" type="Node2D" parent="." node_paths=PackedStringArray("camera", "circle")]
+[node name="TempPlayer" type="Node2D" parent="." node_paths=PackedStringArray("camera", "circle", "area2d")]
 script = ExtResource("3_n2j4k")
 camera = NodePath("Circlebutwhite/Camera2D")
 circle = NodePath("Circlebutwhite")
+area2d = NodePath("Circlebutwhite/Area2D")
 
 [node name="Circlebutwhite" type="Sprite2D" parent="TempPlayer" node_paths=PackedStringArray("other")]
 modulate = Color(0.447059, 0.862745, 0.733333, 1)
@@ -143,5 +156,9 @@ scale = Vector2(87.98, 87.98)
 mesh = SubResource("PrismMesh_w4dp7")
 
 [node name="HUD" parent="." instance=ExtResource("7_85umf")]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_x27xh")
+autoplay = true
 
 [connection signal="body_entered" from="TempPlayer/Circlebutwhite/Area2D" to="TempPlayer/Circlebutwhite" method="_on_area_2d_body_entered"]

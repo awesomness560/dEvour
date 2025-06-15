@@ -2,12 +2,13 @@ extends Node2D
 class_name Player
 @export var camera: Camera2D
 @export var circle: Sprite2D 
+@export var eatSoundEffect : AudioStreamPlayer
 @export var intialSpeed = 100
 var speed = 100
 #higher lower limit means circle must be larget to consume
 @export var consumptionLowerLimit:float = .10
 @export var area2d : Area2D
-var zoomTarget = 1.0
+var zoomTarget : float = 1.0
 
 func _ready() -> void:
 	Global.player = self
@@ -41,15 +42,19 @@ func checkForAreas():
 				grow()#( i fix) kys (change if pellet scene is cganged in structure)
 				zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
 				speed += 0.4
+				eatSoundEffect.play()
+				SignalBus.combo.emit()
 				#zoom(parent)
 		parent = parent.get_parent()
 		if parent is enemy:
 			#if parent.size.x < (Global.globalSize-consumptionLowerLimit):
 			print("Enemy dying:", parent)
 			parent.die()
+			SignalBus.combo.emit()
 			grow()#( i fix) kys (change if pellet scene is cganged in structure)
 			zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
 			speed += 0.4
+			eatSoundEffect.play()
 			#else:
 				#circle.hide()
 				
