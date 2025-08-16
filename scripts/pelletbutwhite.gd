@@ -6,4 +6,8 @@ func _ready() -> void:
 	randomize()
 	size = randf_range((playerSize*.5),(playerSize*1))
 	scale = Vector2(size,size)
-	print(scale)
+
+
+func _on_area_2d_area_entered(area: Area2D) -> void:
+	if area.get_parent() is Food:
+		area.get_parent().queue_free()

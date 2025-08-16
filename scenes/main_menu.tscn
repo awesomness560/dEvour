@@ -135,6 +135,9 @@ nemy = ExtResource("10_flqon")
 pellet_spawner = NodePath("../Pellet_Spawner")
 
 [node name="Pellet_Spawner" parent="." instance=ExtResource("11_rcqid")]
+time_between_waves = 5.0
+pellets_per_wave = 20
+pellets_increment = 0
 
 [node name="Music" type="AudioStreamPlayer" parent="."]
 stream = SubResource("AudioStreamRandomizer_j7ex8")
