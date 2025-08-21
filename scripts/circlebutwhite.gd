@@ -4,7 +4,7 @@ class_name Player
 @export var circle: Sprite2D 
 @export var speedingParticles : CPUParticles2D
 @export var eatSoundEffect : AudioStreamPlayer
-@export var intialSpeed = 1000
+@export var intialSpeed = 1500
 var speed = 200
 #higher lower limit means circle must be larget to consume
 @export var consumptionLowerLimit:float = .10

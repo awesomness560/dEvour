@@ -11,8 +11,10 @@ func _ready() -> void:
 	else:
 		dots = Global.dots *0.01* (size*100)
 	scale = Vector2(size,size)
-
-
-func _on_area_2d_area_entered(area: Area2D) -> void:
-	if area.get_parent() is Food:
-		self.queue_free()
+	self.visible = false
+func _process(delta: float) -> void:
+	if !self.visible:
+		if !$Area2D.has_overlapping_areas() && !$Area2D.has_overlapping_bodies():
+			self.visible = true
+		else:
+			self.free()
