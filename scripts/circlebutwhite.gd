@@ -4,8 +4,8 @@ class_name Player
 @export var circle: Sprite2D 
 @export var speedingParticles : CPUParticles2D
 @export var eatSoundEffect : AudioStreamPlayer
-@export var intialSpeed = 100
-var speed = 100
+@export var intialSpeed = 1000
+var speed = 200
 #higher lower limit means circle must be larget to consume
 @export var consumptionLowerLimit:float = .10
 @export var area2d : Area2D
@@ -20,19 +20,19 @@ func _ready() -> void:
 func _process(delta: float) -> void:
 	handleCamera()
 	checkForAreas()
-	if Input.is_key_pressed(KEY_D):
+	if Input.is_action_pressed("ui_right"):
 		global_position.x += speed*delta
-	if Input.is_key_pressed(KEY_A):
+	if Input.is_action_pressed("ui_left"):
 		global_position.x -= speed*delta
-	if Input.is_key_pressed(KEY_W):
+	if Input.is_action_pressed("ui_up"):
 		global_position.y -= speed*delta
-	if Input.is_key_pressed(KEY_S):
+	if Input.is_action_pressed("ui_down"):
 		global_position.y += speed*delta
 	if Input.is_key_pressed(KEY_SPACE):
 		speed_up(delta)
 	else:
 		isSpeeding = false
-		speed = intialSpeed
+		speed = intialSpeed * (Global.globalSize)
 	
 	speedingParticles.emitting = isSpeeding
 	
@@ -77,7 +77,6 @@ func handleCamera():
 	
 	if isSpeeding:
 		finalZoom *= 0.5
-	
 	camera.zoom.x = lerp(camera.zoom.x, finalZoom, 0.1)
 	camera.zoom.y = lerp(camera.zoom.y, finalZoom, 0.1)
 	
@@ -86,7 +85,7 @@ func speed_up(delta):
 		return
 	else:
 		isSpeeding = true
-		speed = 200
+		speed = intialSpeed * (Global.globalSize)*2
 		# Only shrink if it won't go below the minimum
 		var new_scale = circle.scale - Vector2(0.05,0.05) * delta
 		if new_scale.x >= 0.25:

@@ -10,4 +10,5 @@ func _ready() -> void:
 
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.get_parent() is Food:
-		area.get_parent().queue_free()
+		
+		self.queue_free()

@@ -32,15 +32,15 @@ func spawn_wave() -> void:
 		match side:
 			0: 
 				spawn.x = Global.player.global_position.x - distance
-				spawn.y = Global.player.global_position.y + randi_range(-3000, 3000)
+				spawn.y = Global.player.global_position.y + randi_range(-3000*Global.globalSize, 3000*Global.globalSize)
 			1:
 				spawn.x = Global.player.global_position.x - distance
-				spawn.y = Global.player.global_position.y + randi_range(-3000, 3000)
+				spawn.y = Global.player.global_position.y + randi_range(-3000*Global.globalSize, 3000*Global.globalSize)
 			2:
-				spawn.x = Global.player.global_position.x + randi_range(-3000,3000)
+				spawn.x = Global.player.global_position.x + randi_range(-3000*Global.globalSize,3000*Global.globalSize)
 				spawn.y = Global.player.global_position.y - distance
 			3:
-				spawn.x = Global.player.global_position.x + randi_range(-3000,3000)
+				spawn.x = Global.player.global_position.x + randi_range(-3000*Global.globalSize,3000*Global.globalSize)
 				spawn.y = Global.player.global_position.y - distance
 		p.global_position = spawn
 		p.died.connect(on_death)

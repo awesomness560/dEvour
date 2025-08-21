@@ -31,5 +31,5 @@ func spawn() -> void:
 			var x2 = randi_range(0+ 200,0+ 3000 )
 			var y1 = randi_range(0- 3000,0 - 200 )
 			var y2 = randi_range(0+ 200,0 + 3000 )
-			f.global_position.x = randi_range(x1, x2)*(waves/2)
-			f.global_position.y = randi_range(y1, y2)*(waves/2)
+			f.global_position.x = randi_range(x1, x2)*(waves/2)*Global.globalSize
+			f.global_position.y = randi_range(y1, y2)*(waves/2)*Global.globalSize

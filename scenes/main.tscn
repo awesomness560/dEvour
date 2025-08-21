@@ -41,6 +41,9 @@ z_index = 2
 position = Vector2(-501, -258)
 
 [node name="Pellet_Spawner" parent="." instance=ExtResource("5_tefeu")]
+time_between_waves = 5.0
+pellets_per_wave = 20
+pellets_increment = 0
 
 [node name="Player" parent="." instance=ExtResource("1_jyhfs")]
 z_index = 1

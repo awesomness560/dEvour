@@ -55,7 +55,7 @@ func setup_shader_params():
 	
 	# Set other defaults
 	grid_material.set_shader_parameter("cell_size", 32.0)
-	grid_material.set_shader_parameter("dot_size", 0.3)
+	grid_material.set_shader_parameter("dot_size", 0.04)
 	grid_material.set_shader_parameter("anti_aliasing_factor", 0.02)
 
 func _process(_delta):
@@ -67,10 +67,10 @@ func _process(_delta):
 	grid_material.set_shader_parameter("camera_offset", camera_pos)
 	
 	# Update camera zoom for proper grid scaling
-	var camera_zoom = 1.0
+	'''var camera_zoom = 1.0
 	if main_camera.zoom.x > 0:
 		camera_zoom = 1.0 / main_camera.zoom.x  # Convert zoom to scale factor
-	grid_material.set_shader_parameter("camera_zoom", camera_zoom)
+	grid_material.set_shader_parameter("camera_zoom", camera_zoom)'''
 
 # Public methods to control the grid
 func set_grid_size(size: float):
