@@ -14,13 +14,13 @@ func _ready() -> void:
 	player.camera.zoom *= 1.6
 
 func _unhandled_input(event: InputEvent) -> void:
-	if event is InputEventKey:
-		if event.pressed and mainMenu.visible:
-			startGame()
+	if Input.is_anything_pressed():
+		startGame()
 
 func startGame():
+	SignalBus.gameStart.emit()
 	mainMenu.hide()
 	hud.show()
 	
 	player.zoomTarget = 1
-	SignalBus.gameStart.emit()
+	

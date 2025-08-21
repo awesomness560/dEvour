@@ -15,6 +15,7 @@ var isSpeeding : bool = false
 
 func _ready() -> void:
 	Global.player = self
+	Global.globalSize = .25
 	checkForAreas()
 
 func _process(delta: float) -> void:
@@ -51,22 +52,23 @@ func checkForAreas():
 	for i in area2d.get_overlapping_areas():
 		var parent = i.get_parent()
 		if parent is Food:
-			if parent.scale.x < (Global.globalSize-consumptionLowerLimit):
-				parent.queue_free()
-				grow()#( i fix) kys (change if pellet scene is cganged in structure)
-				zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
-				speed += 0.4
-				eatSoundEffect.play()
-				SignalBus.combo.emit()
-				#zoom(parent)
+			Global.dots += round(parent.dots)
+			SignalBus.collectedDots.emit(parent.dots)
+			parent.queue_free()
+			
+			speed += 0.4
+			eatSoundEffect.play()
+			SignalBus.combo.emit()
+			#zoom(parent)
 		parent = parent.get_parent()
 		if parent is enemy:
-			#if parent.size.x < (Global.globalSize-consumptionLowerLimit):
-			print("Enemy dying:", parent)
+			Global.dots += round(Global.dots*.05)
+			SignalBus.collectedDots.emit(round(Global.dots*.05))
+			
 			parent.die()
 			SignalBus.combo.emit()
-			grow()#( i fix) kys (change if pellet scene is cganged in structure)
-			zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
+			#grow()#( i fix) kys (change if pellet scene is cganged in structure)
+			#zoomTarget = lerpf(zoomTarget, 0.05, 0.05)
 			speed += 0.4
 			eatSoundEffect.play()
 			#else:
@@ -81,16 +83,10 @@ func handleCamera():
 	camera.zoom.y = lerp(camera.zoom.y, finalZoom, 0.1)
 	
 func speed_up(delta): 
-	if(circle.scale.x < 0.25):
-		return
-	else:
-		isSpeeding = true
-		speed = intialSpeed * (Global.globalSize)*2
+
+	isSpeeding = true
+	speed = intialSpeed * (Global.globalSize)*2
 		# Only shrink if it won't go below the minimum
-		var new_scale = circle.scale - Vector2(0.05,0.05) * delta
-		if new_scale.x >= 0.25:
-			circle.scale = new_scale
-			Global.globalSize = circle.scale.x
 #func zoom(parent:Food):
 	#camera.zoom /= zoomFactor
 	#zoomFactor -= 0.05
