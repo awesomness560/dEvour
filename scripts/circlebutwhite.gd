@@ -62,8 +62,8 @@ func checkForAreas():
 			#zoom(parent)
 		parent = parent.get_parent()
 		if parent is enemy:
-			Global.dots += round(Global.dots*.05)
-			SignalBus.collectedDots.emit(round(Global.dots*.05))
+			Global.dots += round(Global.dots*.025)
+			SignalBus.collectedDots.emit(round(Global.dots*.025))
 			
 			parent.die()
 			SignalBus.combo.emit()

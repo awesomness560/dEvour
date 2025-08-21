@@ -46,7 +46,6 @@ shader_parameter/enable_density_fade = true
 shader_parameter/min_dot_size = 0.5
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j7ex8"]
-playback_mode = 1
 streams_count = 4
 stream_0/stream = ExtResource("12_1ajci")
 stream_1/stream = ExtResource("13_7b55j")
