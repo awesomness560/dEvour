@@ -6,6 +6,7 @@ class_name Player
 @export var eatSoundEffect : AudioStreamPlayer
 @export var intialSpeed = 1500
 var speed = 200
+@export var dotConsumption: int = 1
 #higher lower limit means circle must be larget to consume
 @export var consumptionLowerLimit:float = .10
 @export var area2d : Area2D
@@ -62,8 +63,8 @@ func checkForAreas():
 			#zoom(parent)
 		parent = parent.get_parent()
 		if parent is enemy:
-			Global.dots += round(Global.dots*.025)
-			SignalBus.collectedDots.emit(round(Global.dots*.025))
+			Global.dots += round(Global.dots*.01)
+			SignalBus.collectedDots.emit(round(Global.dots*.01))
 			
 			parent.die()
 			SignalBus.combo.emit()
@@ -83,9 +84,9 @@ func handleCamera():
 	camera.zoom.y = lerp(camera.zoom.y, finalZoom, 0.1)
 	
 func speed_up(delta): 
-
 	isSpeeding = true
 	speed = intialSpeed * (Global.globalSize)*2
+
 		# Only shrink if it won't go below the minimum
 #func zoom(parent:Food):
 	#camera.zoom /= zoomFactor

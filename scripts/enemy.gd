@@ -7,6 +7,7 @@ func _ready() -> void:
 	add_to_group("enemies")
 	if $triangle.scale.x != Global.globalSize:
 		$triangle.scale = Vector2(Global.globalSize/5.1,Global.globalSize/5.1)
+		
 func _process(delta: float) -> void:
 	if Global.player:
 		var movement : Vector2 = (Global.player.global_position - global_position).normalized()

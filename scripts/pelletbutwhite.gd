@@ -10,11 +10,16 @@ func _ready() -> void:
 		dots = 1 * (size*100)
 	else:
 		dots = Global.dots *0.01* (size*100)
-	scale = Vector2(size,size)
+	scale = scale *0.01
+	
 	self.visible = false
+	
 func _process(delta: float) -> void:
 	if !self.visible:
 		if !$Area2D.has_overlapping_areas() && !$Area2D.has_overlapping_bodies():
 			self.visible = true
 		else:
 			self.free()
+	else:
+		if scale.x != size:
+			scale = scale.lerp(Vector2(size,size),0.025)

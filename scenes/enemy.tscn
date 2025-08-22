@@ -1,13 +1,14 @@
-[gd_scene load_steps=3 format=3 uid="uid://b3hlhufm5k7wc"]
+[gd_scene load_steps=4 format=3 uid="uid://b3hlhufm5k7wc"]
 
 [ext_resource type="Texture2D" uid="uid://vy63x4st012l" path="res://images/trinaglebutwhite.png" id="1_1xqsx"]
 [ext_resource type="Script" uid="uid://frkhhdt5imft" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="Texture2D" uid="uid://c032uojk7mniu" path="res://images/squ.png" id="3_4ra3w"]
 
 [node name="Enemy" type="Node2D"]
 script = ExtResource("1_md0e3")
 
 [node name="triangle" type="Sprite2D" parent="."]
-modulate = Color(1, 0.905882, 0.839216, 1)
+modulate = Color(1, 0.878431, 0.494118, 1)
 rotation = 1.57079
 scale = Vector2(0.04, 0.04)
 texture = ExtResource("1_1xqsx")
@@ -16,3 +17,34 @@ texture = ExtResource("1_1xqsx")
 
 [node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="triangle/Area2D"]
 polygon = PackedVector2Array(-425, 375, 425, 375, 0, -375)
+
+[node name="CPUParticles2D" type="CPUParticles2D" parent="triangle"]
+show_behind_parent = true
+position = Vector2(-200.003, 399.999)
+amount = 13
+texture = ExtResource("3_4ra3w")
+lifetime = 2.0
+speed_scale = 2.0
+direction = Vector2(0, 1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(0.933333, 0.415686, 0.486275, 1)
+
+[node name="CPUParticles2D2" type="CPUParticles2D" parent="triangle"]
+show_behind_parent = true
+position = Vector2(199.997, 400.001)
+texture = ExtResource("3_4ra3w")
+lifetime = 2.0
+speed_scale = 2.0
+direction = Vector2(0, 1)
+spread = 30.0
+gravity = Vector2(0, 0)
+initial_velocity_min = 200.0
+initial_velocity_max = 200.0
+scale_amount_min = 3.0
+scale_amount_max = 3.0
+color = Color(0.933333, 0.415686, 0.486275, 1)

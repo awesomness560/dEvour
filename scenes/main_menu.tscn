@@ -1,4 +1,4 @@
-[gd_scene load_steps=20 format=3 uid="uid://but5v1os34pg"]
+[gd_scene load_steps=19 format=3 uid="uid://but5v1os34pg"]
 
 [ext_resource type="Shader" uid="uid://cldsfbdp2e5sn" path="res://Shaders/background.gdshader" id="1_bqqt6"]
 [ext_resource type="Script" uid="uid://cmef8ooie0kg3" path="res://VisualScripts/main_menu.gd" id="1_rtw2f"]
@@ -13,7 +13,6 @@
 [ext_resource type="PackedScene" uid="uid://dwvfpesetno6e" path="res://scenes/pellet_spawner.tscn" id="11_rcqid"]
 [ext_resource type="AudioStream" uid="uid://dahmdic8efk05" path="res://Audio/Music/good-night-lofi-cozy-chill-music-160166.mp3" id="12_1ajci"]
 [ext_resource type="AudioStream" uid="uid://d064gx0qmkack" path="res://Audio/Music/spring-lofi-vibes-lofi-music-340019.mp3" id="13_7b55j"]
-[ext_resource type="AudioStream" uid="uid://e1qtmq8kkadj" path="res://Audio/Music/Metal Gear Rising_ Revengeance OST It Has To Be This Way Extended.mp3" id="14_5pajh"]
 [ext_resource type="AudioStream" uid="uid://dt7xw24p43ijk" path="res://Audio/Music/lofi-girl-lofi-hiphop-beats-328177.mp3" id="15_7b55j"]
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_8ln24"]
@@ -46,12 +45,10 @@ shader_parameter/enable_density_fade = true
 shader_parameter/min_dot_size = 0.5
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_j7ex8"]
-streams_count = 4
+streams_count = 3
 stream_0/stream = ExtResource("12_1ajci")
 stream_1/stream = ExtResource("13_7b55j")
-stream_2/stream = ExtResource("14_5pajh")
-stream_2/weight = 0.1
-stream_3/stream = ExtResource("15_7b55j")
+stream_2/stream = ExtResource("15_7b55j")
 
 [node name="MainMenu" type="Node2D" node_paths=PackedStringArray("player", "mainMenu", "hud")]
 script = ExtResource("1_rtw2f")
@@ -107,6 +104,8 @@ material = SubResource("ShaderMaterial_rtw2f")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_top = 1.0
+offset_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
