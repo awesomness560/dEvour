@@ -1,8 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://b4ohgfqhj757o"]
+[gd_scene load_steps=12 format=3 uid="uid://b4ohgfqhj757o"]
 
 [ext_resource type="Script" uid="uid://dppwttdoguuy1" path="res://scripts/circlebutwhite.gd" id="1_onrkg"]
 [ext_resource type="Shader" uid="uid://ddoignx7fcyso" path="res://Shaders/player.gdshader" id="2_dqkch"]
 [ext_resource type="Texture2D" uid="uid://b0poo0166m2qj" path="res://images/circle.png" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://bk6iu7k0l374k" path="res://scenes/trap.tscn" id="2_smehm"]
 [ext_resource type="Script" uid="uid://bw27o2uq2qexr" path="res://VisualScripts/jelly_slime.gd" id="4_qlg0r"]
 [ext_resource type="AudioStream" uid="uid://btawjqtopba6n" path="res://Audio/Pop/pop-cartoon-328167.mp3" id="5_tuyoq"]
 [ext_resource type="AudioStream" uid="uid://dxk0j17sqy7du" path="res://Audio/Pop/sharp-pop-328170.mp3" id="6_fjrip"]
@@ -39,6 +40,7 @@ circle = NodePath("Circlebutwhite")
 speedingParticles = NodePath("Speeding")
 eatSoundEffect = NodePath("Eat")
 area2d = NodePath("Circlebutwhite/Area2D")
+trap = ExtResource("2_smehm")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 

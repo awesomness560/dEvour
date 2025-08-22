@@ -33,7 +33,7 @@ func _collected(amount:int):
 	
 
 func _process(delta: float) -> void:
-	if tempdots >0:
+	if tempdots != 0:
 		if $Timer.is_stopped():
 			$Timer.start()
 	else:
@@ -42,7 +42,10 @@ func _process(delta: float) -> void:
 
 
 func _on_timer_timeout() -> void:
-	tempdots -= 1
+	var delta = 1
+	if tempdots <0:
+		delta = -1
+	tempdots -= delta
 	if pulses > MaxPulsesPerStreak:
 		text = str(Global.dots)
 		tempdots = 0
@@ -52,6 +55,6 @@ func _on_timer_timeout() -> void:
 		pulses += 1
 		startPulse()
 		text = str(Global.dots-tempdots)
-		if tempdots >0:
+		if tempdots != 0:
 			$Timer.start()
 			

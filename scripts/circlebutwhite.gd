@@ -11,7 +11,7 @@ var speed = 200
 @export var consumptionLowerLimit:float = .10
 @export var area2d : Area2D
 var zoomTarget : float = 1.0
-
+@export var trap : PackedScene
 var isSpeeding : bool = false
 
 func _ready() -> void:
@@ -32,6 +32,12 @@ func _process(delta: float) -> void:
 		global_position.y += speed*delta
 	if Input.is_key_pressed(KEY_SPACE):
 		speed_up(delta)
+	elif Global.dots-50 > 0 and Input.is_action_just_released("grow_trap"):
+		var newTrap = trap.instantiate()
+		get_parent().add_child(newTrap)
+		newTrap.position = position
+		Global.dots -= 50
+		SignalBus.collectedDots.emit(-50)
 	else:
 		isSpeeding = false
 		speed = intialSpeed * (Global.globalSize)
